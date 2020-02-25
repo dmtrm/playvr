@@ -18,12 +18,13 @@ public class OculusDebug : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DebugUIBuilder.instance.AddLabel("Debug Info");
         var rt = DebugUIBuilder.instance.AddLabel("Debug");
         logText = rt.GetComponent<Text>();
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.Three))
         {
@@ -31,8 +32,7 @@ public class OculusDebug : MonoBehaviour
             else DebugUIBuilder.instance.Show();
             inMenu = !inMenu;
         }
-
-    }
+    }*/
 
     public void Log(string msg)
     {

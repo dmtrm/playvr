@@ -2,27 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+
 
 public class FitInsideBox : MonoBehaviour
 {
     public GameObject fitToParent;
     public List<GameObject> triggers;
-    public Text notifyMessage;
+    public TMP_Text notifyMessage;
     private bool hitted;
     private bool inside;
     Vector3 newPos;
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
-        // Debug.Log("outside!!! " + fitToParent.GetComponent<MeshFilter>().mesh.bounds.Contains(gameObject.transform.position));
         if (hitted && !inside)
         {
-            // Debug.Log("inside!!!! " + fitToParent.transform + " test " + gameObject.transform.parent);
             transform.SetParent(fitToParent.transform);
             transform.localPosition = new Vector3(0, 0, 0);
-            // gameObject.GetComponent<DistanceGrabbable>().enabled = false;
             gameObject.layer = LayerMask.NameToLayer("Default");
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<Rigidbody>().useGravity = false;

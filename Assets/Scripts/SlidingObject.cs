@@ -56,7 +56,6 @@ public class SlidingObject : MonoBehaviour
                 transform.localPosition = new Vector3(
                     transform.localPosition.x,
                     objPosY,
-                    // toggle.transform.localPosition.y * (transform.localScale.y / toggle.transform.localScale.y),
                     transform.localPosition.z
                 );
             } else {
@@ -64,22 +63,26 @@ public class SlidingObject : MonoBehaviour
             }
         }
 
-        /*if (movement == PostitionMovement.Z)
+        // TODO: test
+        if (movement == PostitionMovement.Z)
         {
 
-            Debug.Log("isMovingEnabled " + isMovingEnabled);
-            //if (isMovingEnabled) {
+            if (isMovingEnabled)
+            {
                 float togglePosZ = toggle.transform.localPosition.z + toggle.transform.localScale.z / 2;
                 float objPosZ = togglePosZ - transform.localScale.z / 2;
+
                 transform.localPosition = new Vector3(
                     transform.localPosition.x,
                     transform.localPosition.y,
-                    Mathf.Clamp(objPosZ, -0.5f, 0.35f)
+                    objPosZ
                 );
-            //} else {
-             //   transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-           // }
-        }*/
+            }
+            else
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            }
+        }
 
     }
 }

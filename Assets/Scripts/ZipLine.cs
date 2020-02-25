@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class ZipLine : MonoBehaviour
 {
-    private Animator anim;
     private GameObject hand;
-    public GameObject climber;
+    public GameObject player;
     public OVRInput.Controller controller = OVRInput.Controller.Active;
     private Vector3 prevPos;
     public Transform endPoint;
     private bool isMoving;
+    public GameObject handle;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
         if (hand)
         {
             prevPos = hand.transform.position;
@@ -24,15 +23,8 @@ public class ZipLine : MonoBehaviour
     void Update()
     {
 
-        // Debug.Log("Active " + OVRPlugin.Controller.Active);
-        // Debug.Log("GetDown " + OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller));
-        // Debug.Log("GetActiveController() " + OVRInput.GetActiveController());
-        // Debug.Log("Active7 " + OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller));
-
         float speed = 3.0f;
         float step = speed * Time.deltaTime;
-
-        // transform.position = Vector3.MoveTowards(transform.position, endPoint.position, step);
 
 
         if (hand != null && (
@@ -40,15 +32,10 @@ public class ZipLine : MonoBehaviour
             (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger, controller) && hand.tag == "RightHand")
         )){
             OculusDebug.Instance.Log("Hand " + hand.tag);
-            Debug.Log("Moving hand " + hand.ToString());
-            Debug.Log("Parent " + transform.ToString());
             isMoving = true;
-            // transform.position = Vector3.MoveTowards(transform.position, endPoint.position, step);
-            CharacterController cc = climber.GetComponent<CharacterController>();
-            cc.enabled = false;
-            cc.transform.position += transform.position - hand.transform.position;
-            // climber.transform.SetParent(transform);
-            // cc.transform.position += (prevPos - hand.transform.position);
+            CharacterController cc = player.GetComponent<CharacterController>();
+            cc.enabled = false; 
+            cc.transform.position += handle.transform.position - hand.transform.position;
         }
 
         if (isMoving) {
@@ -59,7 +46,7 @@ public class ZipLine : MonoBehaviour
             (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, controller) && hand.tag == "LeftHand") || 
             (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger, controller) && hand.tag == "RightHand")
         )){
-            CharacterController cc = climber.GetComponent<CharacterController>();
+            CharacterController cc = player.GetComponent<CharacterController>();
             cc.enabled = true;
             hand = null;
         }
