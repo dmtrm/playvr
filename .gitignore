@@ -54,6 +54,3 @@ Assets/Oculus/*
 !Assets/Oculus/SampleFramework/
 Assets/Oculus/SampleFramework/*
 !Assets/Oculus/SampleFramework/Core/
-Assets/Oculus/SampleFramework/Core/*
-!Assets/Oculus/SampleFramework/Core/DistanceGrab/
-!Assets/Oculus/SampleFramework/Core/DebugUI/
