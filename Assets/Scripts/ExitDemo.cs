@@ -7,7 +7,6 @@ public class ExitDemo : MonoBehaviour
 
     public void Quit()
     {
-        OculusDebug.Instance.Log("Quit");
         Application.Quit();
     }
 }

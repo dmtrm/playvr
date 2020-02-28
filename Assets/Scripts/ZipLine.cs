@@ -62,9 +62,6 @@ public class ZipLine : MonoBehaviour
     {
 
         if (other.gameObject.tag == "LeftHand" || other.gameObject.tag == "RightHand") {
-            // Debug.Log("Other 1 3 " + other.gameObject.tag);
-            OculusDebug.Instance.Log("Collision enter");
-            Debug.Log("Collision " + hand);
             hand = other.gameObject;
         }
     }
@@ -74,9 +71,6 @@ public class ZipLine : MonoBehaviour
 
         if (other.gameObject.tag == "RightHand" || other.gameObject.tag == "LeftHand")
         {
-            // Debug.Log("Other 1 3 " + other.gameObject.tag);
-            OculusDebug.Instance.Log("Collision exit");
-            Debug.Log("Collision " + hand);
             hand = null;
         }
     }

@@ -12,11 +12,12 @@ public class Hand : MonoBehaviour
     private Vector3 lastPosition = Vector3.zero;
 
     private GameObject currentPoint = null;
-    private List<GameObject> contactPoints = new List<GameObject>();
+    // private List<GameObject> contactPoints = new List<GameObject>();
     private MeshRenderer meshRenderer = null;
 
     private void Awake()
     {
+        // used as helper to test if collision happen
         meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
@@ -27,12 +28,14 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Controller " + controller);
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller)) {
             GrabPoint();
+        }
+            
 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, controller))
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, controller)) {
             ReleasePoint();
+        }
     }
 
     private void FixedUpdate()
@@ -47,8 +50,9 @@ public class Hand : MonoBehaviour
 
     private void GrabPoint()
     {
-        currentPoint = Utility.GetNearest(transform.position, contactPoints);
+        // currentPoint = Utility.GetNearest(transform.position, contactPoints);
 
+        //if(currentPoint)
         if(currentPoint)
         {
             climber.SetHand(this);
@@ -70,6 +74,24 @@ public class Hand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.CompareTag("ClimbPoint"))
+        {
+            currentPoint = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("ClimbPoint"))
+        {
+            OculusDebug.Instance.Log("Exit climb point");
+            currentPoint = null;
+        }
+    }
+
+
+   /*private void OnTriggerEnter(Collider other)
+    {
         AddPoint(other.gameObject);
     }
 
@@ -88,6 +110,6 @@ public class Hand : MonoBehaviour
     {
         if (newObject.CompareTag("ClimbPoint"))
             contactPoints.Remove(newObject);
-    }
+    }*/
 
 }

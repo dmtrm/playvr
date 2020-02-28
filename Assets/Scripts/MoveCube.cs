@@ -20,7 +20,6 @@ public class MoveCube : MonoBehaviour
 
     private bool isActive; 
 
-    // Start is called before the first frame update
     void Start()
     {
         parent = transform.parent.gameObject;
@@ -34,7 +33,6 @@ public class MoveCube : MonoBehaviour
         renderer.SetPropertyBlock(mpb);
     }
 
-    //void OnTriggerStay(Collider other)
     void Update()
     {
 
