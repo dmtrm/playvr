@@ -181,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   climber: {fileID: 5259789586158789016}
   controller: 1
+  debugMode: 0
+  isGripped: 0
 --- !u!23 &23977838
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23977833}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -577,7 +579,7 @@ GameObject:
   - component: {fileID: 107396654}
   m_Layer: 0
   m_Name: PlatformThird
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107396653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.402, y: 0, z: 0.242}
+  m_LocalPosition: {x: 0.303, y: 0, z: -0.757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1496564517}
@@ -612,8 +614,9 @@ GameObject:
   - component: {fileID: 121982211}
   - component: {fileID: 121982210}
   - component: {fileID: 121982213}
+  - component: {fileID: 121982217}
   m_Layer: 8
-  m_Name: GreenCube
+  m_Name: ActivateTiggersCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,6 +759,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121982208}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &121982217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121982208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfea37c70b8a25f4ba7a5d7e33174beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fitToParent: {fileID: 0}
+  triggers: []
+  notifyMessage: {fileID: 0}
 --- !u!1 &124339530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1106,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21984
+  m_Name: pb_Mesh21992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1280,8 +1298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af37994c5170c4a40af3795e790cc814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ovrPlayer: {fileID: 5259789586158789012}
-  teleport: {fileID: 301836085}
 --- !u!1 &199893352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   climber: {fileID: 5259789586158789016}
   controller: 2
+  debugMode: 0
+  isGripped: 0
 --- !u!23 &207928443
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1529,7 +1547,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207928438}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1701,7 +1719,7 @@ PrefabInstance:
     - target: {fileID: 6908371136688838067, guid: 432da07d49a5a2c4f972792ad9a3b831,
         type: 3}
       propertyPath: m_TagString
-      value: Teleport
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1799190959347796480, guid: 432da07d49a5a2c4f972792ad9a3b831,
         type: 3}
@@ -2182,7 +2200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265593083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8387666, y: -1.29, z: 1.072}
+  m_LocalPosition: {x: -0.8387666, y: -1.29, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1496564517}
@@ -2219,10 +2237,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301836085}
-  - component: {fileID: 301836086}
   m_Layer: 0
   m_Name: PlatformOne
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2235,25 +2252,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301836084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 2.28, z: 0.365}
+  m_LocalPosition: {x: -1.178, y: 2.28, z: 0.178}
   m_LocalScale: {x: 0.3378292, y: 3.6533685, z: 0.5156284}
   m_Children: []
   m_Father: {fileID: 97642074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &301836086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301836084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8066db209d3ade419702c300d5cdd09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ovrPlayer: {fileID: 5259789586158789012}
 --- !u!1 &342859786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,7 +2633,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21880
+  m_Name: pb_Mesh21904
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3956,7 +3960,7 @@ GameObject:
   - component: {fileID: 498975464}
   m_Layer: 0
   m_Name: PlatformZero
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5164,6 +5168,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 3.9
+--- !u!114 &628033504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628033501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8066db209d3ade419702c300d5cdd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5259789586158789012}
+  teleport: {fileID: 301836085}
+  centerCamera: {fileID: 5259789586158789010}
 --- !u!1 &653325446
 GameObject:
   m_ObjectHideFlags: 0
@@ -6250,11 +6269,51 @@ PrefabInstance:
       propertyPath: _laserBeamBehavior
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114392411909336904, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: maxLength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120006741097097638, guid: a9d2de84afb308a4796cc671d3432b4d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49e952d12f3fdb64c950c85867446b9d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
 --- !u!1 &913526647 stripped
@@ -6880,7 +6939,7 @@ GameObject:
   - component: {fileID: 1098637113}
   m_Layer: 0
   m_Name: PlatformSecond
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7124,8 +7183,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122031353}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.6199994, y: 82.64131, z: 2.7999997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.36, y: 82.883, z: 2.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 688562888}
@@ -8903,7 +8962,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21970
+  m_Name: pb_Mesh21952
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9081,7 +9140,7 @@ GameObject:
   - component: {fileID: 1485958185}
   m_Layer: 0
   m_Name: PlatformFourth
-  m_TagString: Untagged
+  m_TagString: Teleport
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11595,6 +11654,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1409357150662858, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191426646027960, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
 --- !u!4 &1992031085 stripped
@@ -12488,7 +12555,7 @@ GameObject:
   - component: {fileID: 1125404754151720181}
   m_Layer: 0
   m_Name: Grab
-  m_TagString: Untagged
+  m_TagString: StopClimbing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12518,6 +12585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e713538b0c41a45b92039718451683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
   player: {fileID: 5259789586158789012}
   controller: -2147483648
   endPoint: {fileID: 1402549129}
@@ -13093,8 +13161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764a291722b168640823938db0b7d9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityModifier: 0.379
   sensitivity: 90
+  leftHand: {fileID: 23977835}
+  rightHand: {fileID: 207928440}
 --- !u!4 &5259789586158894512
 Transform:
   m_ObjectHideFlags: 0

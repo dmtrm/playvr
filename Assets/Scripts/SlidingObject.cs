@@ -29,7 +29,6 @@ public class SlidingObject : MonoBehaviour
     void Update()
     {
 
-        // *(parent.transform.localScale.y / transform.localScale.y)
         if (movement == PostitionMovement.X)
         {
             // Debug.Log("Scale local " + transform.localScale.x + " " + toggle.transform.localScale.x);

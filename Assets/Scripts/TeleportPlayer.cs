@@ -5,33 +5,34 @@ using UnityEngine;
 public class TeleportPlayer : MonoBehaviour
 {
 
-    public GameObject ovrPlayer;
+    public GameObject player;
+    public Transform teleport;
+    private Vector3 initPosition;
+    public GameObject centerCamera;
+    private OVRGrabbable ovrGrabbable;
+    private CharacterController cc;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
-        // ovrPlayer.transform.position = new Vector3(0.793f, 5.041f, 16.235f);
-        Debug.Log("On ovrPlayer " + ovrPlayer.GetInstanceID());
-        // ovrPlayer.transform.position = new Vector3(0.793f, 5.041f, 16.235f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        initPosition = transform.position;
+        ovrGrabbable = GetComponent<OVRGrabbable>();
+        cc = player.GetComponent<CharacterController>();
     }
 
 
-    void OnCollisionEnter(Collision collision)
+
+    void OnTriggerEnter(Collider other)
     {
 
         // TODO: only for cupboard
-        if (collision.gameObject.tag == "Teleport") {
-            CharacterController cc = ovrPlayer.GetComponent<CharacterController>();
+        if (other.gameObject == centerCamera)
+        {
             cc.enabled = false;
-            cc.transform.position = new Vector3(0.793f, 5.041f, 16.235f);
+            cc.transform.position = teleport.position;
             cc.enabled = true;
+            ovrGrabbable.Release();
+            transform.rotation = Quaternion.Euler(0, 180f, 0);
+            transform.position = initPosition;
         }
     }
 }

@@ -23,17 +23,6 @@ public class OculusDebug : MonoBehaviour
         logText = rt.GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (OVRInput.GetDown(OVRInput.Button.Three))
-        {
-            if (inMenu) DebugUIBuilder.instance.Hide();
-            else DebugUIBuilder.instance.Show();
-            inMenu = !inMenu;
-        }
-    }*/
-
     public void Log(string msg)
     {
         logText.text = msg;

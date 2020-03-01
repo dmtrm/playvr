@@ -63,7 +63,6 @@ public class Menu : MonoBehaviour
 
     void Teleport(Transform teleportPlatform)
     {
-        // TODO: only for cupboard
         CharacterController cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
         cc.transform.position = teleportPlatform.position;

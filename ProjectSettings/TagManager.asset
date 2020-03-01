@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - ClimbPoint
-  - Teleport
   - Hand
-  - MovePlatform
   - RightHand
   - LeftHand
+  - StopClimbing
+  - Teleport
   layers:
   - Default
   - TransparentFX

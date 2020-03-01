@@ -161,4 +161,13 @@ public class OVRGrabbable : MonoBehaviour
             m_grabbedBy.ForceRelease(this);
         }
     }
+
+    public void Release()
+    {
+         if (m_grabbedBy != null)
+        {
+
+            m_grabbedBy.ForceRelease(this);
+        }
+    }
 }

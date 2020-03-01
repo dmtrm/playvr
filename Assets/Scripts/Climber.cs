@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Climber : MonoBehaviour
 {
-    // public float gravity = 45.0f;
-    public float GravityModifier = 0.379f;
     public float sensitivity = 45.0f;
     private float FallSpeed = 0.0f;
-    private float SimulationRate = 300f;
+    private float SimulationRate = 150f;
 
-    private Hand currentHand = null;
+    public ClimbingHand leftHand;
+    public ClimbingHand rightHand;
+    private ClimbingHand currentHand;
+
+    // private ClimbingHand currentHand = null;
     private CharacterController controller = null;
 
     private void Awake()
@@ -21,10 +23,15 @@ public class Climber : MonoBehaviour
     private void Update()
     {
         // reload the scene if player falls
-        // Debug.Log("Respawn " + controller.isGrounded + " " + controller.transform.position.y);
         if (controller.isGrounded && controller.transform.position.y < 3.9f)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            // if player falls teloport to the closest platform
+            controller.enabled = false;
+            GameObject closestEntity = Utility.GetNearestPlatform(controller.transform.position, GameObject.FindGameObjectsWithTag("Teleport"));
+            controller.transform.position = closestEntity.transform.position;
+            controller.enabled = true;
+
+            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         else
         {
@@ -34,14 +41,27 @@ public class Climber : MonoBehaviour
 
     private void CalculateMovement()
     {
-        Vector3 movement = Vector3.zero;
-        OculusDebug.Instance.Log("Move hand " + currentHand);
 
-        if (currentHand) {
+        Debug.Log("Can grip " + leftHand.isGripped + " " + rightHand.isGripped);
+
+        bool isGripped = leftHand.isGripped || rightHand.isGripped;
+        Vector3 movement = Vector3.zero;
+
+        if (isGripped)
+        {
+            if (rightHand.isGripped)
+            {
+                currentHand = rightHand;
+            }
+            if (leftHand.isGripped)
+            {
+                currentHand = leftHand;
+            }
             movement += currentHand.Delta * sensitivity;
         }
 
-        if (movement == Vector3.zero) {
+        if (movement == Vector3.zero)
+        {
             // movement.y -= gravity * Time.deltaTime;
             movement.y += Physics.gravity.y * Time.deltaTime * SimulationRate;
         }
@@ -55,15 +75,21 @@ public class Climber : MonoBehaviour
         // movement.y += FallSpeed * SimulationRate * Time.deltaTime;
         //movement.y += FallSpeed * SimulationRate;
 
-        if (controller.isGrounded && movement.y < 0) {
+        if (controller.isGrounded && movement.y < 0)
+        {
             movement.y = 0f;
         }
 
         //controller.Move(movement * Time.deltaTime);
         controller.Move(movement * Time.deltaTime);
+        // 
+
+        /*if (currentHand) {
+            movement += currentHand.Delta * sensitivity;
+        }*/
     }
 
-    public void SetHand(Hand hand)
+    /*public void SetHand(ClimbingHand hand)
     {
         if (currentHand)
         {
@@ -76,6 +102,6 @@ public class Climber : MonoBehaviour
     public void Clearhand()
     {
         currentHand = null;
-    }
+    }*/
 }
 
