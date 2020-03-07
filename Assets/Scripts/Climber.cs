@@ -30,8 +30,6 @@ public class Climber : MonoBehaviour
             GameObject closestEntity = Utility.GetNearestPlatform(controller.transform.position, GameObject.FindGameObjectsWithTag("Teleport"));
             controller.transform.position = closestEntity.transform.position;
             controller.enabled = true;
-
-            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         else
         {
@@ -41,8 +39,6 @@ public class Climber : MonoBehaviour
 
     private void CalculateMovement()
     {
-
-        Debug.Log("Can grip " + leftHand.isGripped + " " + rightHand.isGripped);
 
         bool isGripped = leftHand.isGripped || rightHand.isGripped;
         Vector3 movement = Vector3.zero;
@@ -62,46 +58,15 @@ public class Climber : MonoBehaviour
 
         if (movement == Vector3.zero)
         {
-            // movement.y -= gravity * Time.deltaTime;
             movement.y += Physics.gravity.y * Time.deltaTime * SimulationRate;
         }
-
-        // Gravity
-        //if (controller.isGrounded && FallSpeed <= 0)
-        //    FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
-        //else
-        //    FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);
-
-        // movement.y += FallSpeed * SimulationRate * Time.deltaTime;
-        //movement.y += FallSpeed * SimulationRate;
 
         if (controller.isGrounded && movement.y < 0)
         {
             movement.y = 0f;
         }
 
-        //controller.Move(movement * Time.deltaTime);
         controller.Move(movement * Time.deltaTime);
-        // 
-
-        /*if (currentHand) {
-            movement += currentHand.Delta * sensitivity;
-        }*/
     }
-
-    /*public void SetHand(ClimbingHand hand)
-    {
-        if (currentHand)
-        {
-            currentHand.ReleasePoint();
-        }
-
-        currentHand = hand;
-    }
-
-    public void Clearhand()
-    {
-        currentHand = null;
-    }*/
 }
 

@@ -26,6 +26,7 @@ public class LaserPointer : OVRCursor
 
     public GameObject cursorVisual;
     public float maxLength = 10.0f;
+    public float maxDistance = 5.0f;
     
     [SerializeField]
     private LaserBeamBehavior _laserBeamBehavior;
@@ -66,9 +67,11 @@ public class LaserPointer : OVRCursor
 
     public override void SetCursorStartDest(Vector3 start, Vector3 dest, Vector3 normal)
     {
-        _startPoint = start;
-        _endPoint = dest;
-        _hitTarget = true;
+        if (Vector3.Distance(dest, start) < maxDistance) {
+            _startPoint = start;
+            _endPoint = dest;
+            _hitTarget = true;
+        }
     }
 
     public override void SetCursorRay(Transform t)

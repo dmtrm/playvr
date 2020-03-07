@@ -9,7 +9,7 @@ public class ZipLine : MonoBehaviour
     public GameObject player;
     public OVRInput.Controller controller = OVRInput.Controller.Active;
     public Transform endPoint;
-    // handle is used of offset
+    // handle is used for the hand offset
     public GameObject handle;
     private CharacterController cc;
     private bool isZipLineMoving = false;

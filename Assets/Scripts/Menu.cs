@@ -14,7 +14,6 @@ public class Menu : MonoBehaviour
     public Transform currentPlatform;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         Teleport(currentPlatform);
@@ -25,7 +24,6 @@ public class Menu : MonoBehaviour
         DebugUIBuilder.instance.AddButton("Platform 4", Platform4Pressed);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (OVRInput.GetDown(OVRInput.Button.Start))

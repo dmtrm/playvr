@@ -26,7 +26,7 @@ public class MoveCube : MonoBehaviour
         parentCollider = parent.GetComponent<Collider>();
         toggleCollider = gameObject.GetComponent<Collider>();
 
-        // adding outline
+        // adding a block of material to display outline
         mpb = new MaterialPropertyBlock();
         renderer = GetComponent<Renderer>();
         mpb.SetColor("_OutlineColor", Color.white);
@@ -47,6 +47,7 @@ public class MoveCube : MonoBehaviour
 
             if (positionMovement == PostitionMovement.Y)
             {
+                // cube is moved corresponding to y position of the hand
                 transform.position = new Vector3(
                     parent.transform.position.x,
                     Mathf.Clamp(
@@ -94,6 +95,7 @@ public class MoveCube : MonoBehaviour
         if (isActive && (other.gameObject.tag == "LeftHand" || other.gameObject.tag == "RightHand"))
         {
             hand = other.gameObject;
+            OculusDebug.Instance.Log("Enter");
         }
     }
 
@@ -102,6 +104,7 @@ public class MoveCube : MonoBehaviour
 
         if (other.gameObject.tag == "LeftHand" || other.gameObject.tag == "RightHand") {
             hand = null;
+            OculusDebug.Instance.Log("Exit");
         }
     }
 

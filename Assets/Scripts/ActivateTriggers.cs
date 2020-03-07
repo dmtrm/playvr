@@ -17,6 +17,7 @@ public class ActivateTriggers : MonoBehaviour
 
     void FixedUpdate()
     {
+        // if the cube is inside activate the triggers
         if (hitted && !inside)
         {
             transform.SetParent(fitToParent.transform);

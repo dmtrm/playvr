@@ -19,13 +19,11 @@ public class ClimbingHand : MonoBehaviour
 
     private Vector3 lastPosition = Vector3.zero;
 
-    // private GameObject currentPoint = null;
-    // private List<GameObject> contactPoints = new List<GameObject>();
     private MeshRenderer meshRenderer = null;
 
     private void Awake()
     {
-        // used as helper to test if collision happen
+        // used as helper to test if collision has happened
         meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
@@ -36,17 +34,14 @@ public class ClimbingHand : MonoBehaviour
 
     private void Update()
     {
-        if (canGrip && OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller)) {
-            // GrabPoint();
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller) && canGrip) {
             isGripped = true;
             if (debugMode) {
                 meshRenderer.enabled = false;
             }
         }
-            
 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, controller)) {
-            // ReleasePoint();
             isGripped = false;
             if (debugMode) {
                 meshRenderer.enabled = true;
@@ -67,12 +62,7 @@ public class ClimbingHand : MonoBehaviour
 
     private void GrabPoint()
     {
-        // currentPoint = Utility.GetNearest(transform.position, contactPoints);
-
-        //if(currentPoint)
-        // if(currentPoint)
         if (canGrip) {
-            // climber.SetHand(this);
             if (debugMode) {
                 meshRenderer.enabled = false;
             }
@@ -82,16 +72,9 @@ public class ClimbingHand : MonoBehaviour
     
     public void ReleasePoint()
     {
-        // if (canGrip)
-        //if(currentPoint)
-        //{
-        // climber.Clearhand();
         if (debugMode) {
             meshRenderer.enabled = true;
         } 
-        //}
-
-        // currentPoint = null;
         canGrip = false;
     }
 
@@ -99,50 +82,17 @@ public class ClimbingHand : MonoBehaviour
     {
         if(other.gameObject.CompareTag("ClimbPoint"))
         {
-            // currentPoint = other.gameObject;
             canGrip = true;
         }
-
-        // in certain cases like going to the zipline climbing should be prevented 
-        /*if (other.gameObject.CompareTag("StopClimbing"))
-        {
-            Debug.Log("StopClimbing");
-            canGrip = false;
-        }*/
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("ClimbPoint"))
         {
-            // OculusDebug.Instance.Log("Exit climb point");
-            // currentPoint = null;
             canGrip = false;
         }
 
     }
-
-
-   /*private void OnTriggerEnter(Collider other)
-    {
-        AddPoint(other.gameObject);
-    }
-
-    private void AddPoint(GameObject newObject)
-    {
-        if (newObject.CompareTag("ClimbPoint"))
-            contactPoints.Add(newObject);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        RemovePoint(other.gameObject);
-    }
-
-    private void RemovePoint(GameObject newObject)
-    {
-        if (newObject.CompareTag("ClimbPoint"))
-            contactPoints.Remove(newObject);
-    }*/
 
 }

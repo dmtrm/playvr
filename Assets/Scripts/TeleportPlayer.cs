@@ -19,12 +19,9 @@ public class TeleportPlayer : MonoBehaviour
         cc = player.GetComponent<CharacterController>();
     }
 
-
-
     void OnTriggerEnter(Collider other)
     {
 
-        // TODO: only for cupboard
         if (other.gameObject == centerCamera)
         {
             cc.enabled = false;

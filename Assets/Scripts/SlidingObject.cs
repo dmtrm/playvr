@@ -9,11 +9,12 @@ public class SlidingObject : MonoBehaviour
     public GameObject toggle;
     private Collider sliderCollider;
     private Collider toggleCollider;
-    private bool isMovingEnabled;
     public enum PostitionMovement { X, Y, Z };
 
     [SerializeField]
     public PostitionMovement movement;
+
+    private bool isActive;
 
 
     // Start is called before the first frame update
@@ -21,8 +22,6 @@ public class SlidingObject : MonoBehaviour
     {
         sliderCollider = slider.GetComponent<Collider>();
         toggleCollider = toggle.GetComponent<Collider>();
-        isMovingEnabled = toggle.GetComponent<MoveCube>().enabled;
-
     }
 
     // Update is called once per frame
@@ -31,56 +30,39 @@ public class SlidingObject : MonoBehaviour
 
         if (movement == PostitionMovement.X)
         {
-            // Debug.Log("Scale local " + transform.localScale.x + " " + toggle.transform.localScale.x);
-            if (isMovingEnabled) {
-                float togglePosX = toggle.transform.localPosition.x + toggle.transform.localScale.x / 2;
-                float objPosX = togglePosX - transform.localScale.x / 2;
-                transform.localPosition = new Vector3(
-                    objPosX,
-                    transform.localPosition.y,
-                    transform.localPosition.z
-                );
-            } else {
-                transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
-            }
-            
+            // mirroring position of the toggle inside the slider to the position of the current object inside the immediate parent
+            float togglePosX = toggle.transform.localPosition.x + toggle.transform.localScale.x / 2;
+            float objPosX = togglePosX - transform.localScale.x / 2;
+            transform.localPosition = new Vector3(
+                objPosX,
+                transform.localPosition.y,
+                transform.localPosition.z
+            );
         }
 
         if (movement == PostitionMovement.Y)
         {
-            if (isMovingEnabled) {
-                float togglePosY = toggle.transform.localPosition.y + toggle.transform.localScale.y / 2;
-                float objPosY = togglePosY - transform.localScale.y / 2;
+            float togglePosY = toggle.transform.localPosition.y + toggle.transform.localScale.y / 2;
+            float objPosY = togglePosY - transform.localScale.y / 2;
 
-                transform.localPosition = new Vector3(
-                    transform.localPosition.x,
-                    objPosY,
-                    transform.localPosition.z
-                );
-            } else {
-                transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
-            }
+            transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                objPosY,
+                transform.localPosition.z
+            );
         }
 
-        // TODO: test
         if (movement == PostitionMovement.Z)
         {
 
-            if (isMovingEnabled)
-            {
-                float togglePosZ = toggle.transform.localPosition.z + toggle.transform.localScale.z / 2;
-                float objPosZ = togglePosZ - transform.localScale.z / 2;
+            float togglePosZ = toggle.transform.localPosition.z + toggle.transform.localScale.z / 2;
+            float objPosZ = togglePosZ - transform.localScale.z / 2;
 
-                transform.localPosition = new Vector3(
-                    transform.localPosition.x,
-                    transform.localPosition.y,
-                    objPosZ
-                );
-            }
-            else
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
-            }
+            transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                transform.localPosition.y,
+                objPosZ
+            );
         }
 
     }
